@@ -1,8 +1,11 @@
-# Getting Started with Create React App
+![alt text](https://s3.eu-west-1.amazonaws.com/www.remoteflags.com/Header.png)
+# Getting Started with Remote Flags
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This package contains code example on how to integrate with Remote Flags api and fetch a specific flag status.
 
-## Available Scripts
+You will find the render code in ```DemoComponent.js```, where an On/Off flag is used. In this example the flag status is used to display a marketing event for a 25% off Sale image.
+
+## Run 
 
 In the project directory, you can run:
 
@@ -11,60 +14,49 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# How to use
+## Step 1 - Gather data
+Visit [Remote Flags](remoteflags.com) and get the information for the flag you want:
 
-### `npm test`
+1. **FlagId** - Get by selecting the flag at [remoteflags.com/flags](www.remoteflags.com/flags)
+2. **OwnerId** - Get at [remoteflags.com/account](www.remoteflags.com/account)
+3. **Access Token** - Get at [remoteflags.com/account](www.remoteflags.com/account)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Step 2 - setup
+Edit the example with your owner, flag and token.
 
-### `npm run build`
+In ```./remote-flags-client.js``` edit sdk call to include your token.
+```
+apiClient.authentications['RemoteFlagsAuthorizer'].apiKey = "<YOUR_TOKEN>";
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In ```DemoComponent.js``` edit the flag parameters.
+```
+{
+    owner: '<YOUR_OWNER_ID>',
+    flag: '<YOUR_FLAG_ID>'
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Step 3 - run
+Run the project and see the image change based on flag status
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Run - ```npm start```
+2. Visit - http://localhost:3000
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Further configuration
+Additionally, set optional parameters segment and key
+```
+const opts = {
+    // Required for multi-segment flags. For single segment flag skip this (default is 'status').
+    'segment': "status", 
+    // A key identifier to query remoteflags. This is used on overrides and consistent flags.
+    'key': "someIdetifier" 
+};
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Note**: If you don't want to include segment or key in your query simply leave opts as empty:
+```
+const opts = {};
+```
