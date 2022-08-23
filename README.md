@@ -19,8 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 Visit [Remote Flags](remoteflags.com) and get the information for the flag you want:
 
 1. **FlagId** - Get by selecting the flag at [remoteflags.com/flags](www.remoteflags.com/flags)
-2. **OwnerId** - Get at [remoteflags.com/account](www.remoteflags.com/account)
-3. **Access Token** - Get at [remoteflags.com/account](www.remoteflags.com/account)
+2. **OwnerId** - Get at [remoteflags.com/account/api](www.remoteflags.com/account/api)
+3. **Access Token** - Get at [remoteflags.com/account/api](www.remoteflags.com/account/api)
 
 ## Step 2 - Setup
 Edit the example with your owner, flag and token. This information is present on the flag page in the Remote Flags dashboard.
