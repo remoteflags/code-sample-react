@@ -1,8 +1,10 @@
 import { ApiClient, PublicApi } from 'remoteflags-nodejs-client';
 
 // Remote Flags client setup
-let apiClient = new ApiClient();
-apiClient.authentications['RemoteFlagsAuthorizer'].apiKey = "<YOUR_TOKEN>";
+const ownerId = "<YOUR_OWNER_ID>";
+const accessToken = "<YOUR_TOKEN>";
+const apiClient = new ApiClient();
+apiClient.authentications['RemoteFlagsAuthorizer'].apiKey = accessToken;
 const api = new PublicApi(apiClient)
 
 export const getStatus = (params, done, err) => {
@@ -11,7 +13,7 @@ export const getStatus = (params, done, err) => {
     key: params.key || '',
   };
 
-  api.getStatus(params.owner, params.flag, opts).then(
+  api.getStatus(ownerId, params.flag, opts).then(
     (response) => {
       done(response);
     },

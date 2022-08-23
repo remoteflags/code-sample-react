@@ -10,8 +10,7 @@ export default function DemoComponent() {
     // Remote Flags SDK
     getStatus(
       {
-        owner: '<YOUR_OWNER_ID>',
-        flag: '<YOUR_FLAG_ID>'
+        flag: '<YOUR_FLAG_ID>',
       },
       (response) => {
         // This is set for an on/off flag. Change if needed
